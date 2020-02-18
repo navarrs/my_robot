@@ -1,2 +1,3 @@
-# robotics-project2-ros
-# robotics-project2-ros
+# Project 2 - Go Chase It
+
+Simple Gazebo and Simulation of a object follower robot. 

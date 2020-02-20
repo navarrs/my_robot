@@ -37,5 +37,7 @@
   <node name="rviz" 
         pkg="rviz" 
         type="rviz" 
+        args="-d "
+        args="-d $(find my_robot)/rviz/my_robot.rviz"
         respawn="false"/>
 </launch>

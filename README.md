@@ -4,7 +4,9 @@ Simple Gazebo and Simulation of a object follower robot.
 
 To compile:
 ```
-	cd /path/to/catkin_ws/
+	cd /path/to/catkin_ws/src/
+	catkin_init_workspace
+	cd ..
 	catkin_make
 ```
 
@@ -18,20 +20,12 @@ To launch the world simulation (Gazebo and RVIZ). In one terminal, run:
 
 Gazebo should look like this:
 <p align="center">
-    <img src="./readme/gazebo.png" width="600" />
+    <img src="./readme/gazebo.png" width="800" />
 </p>
-
-### Optional
-To Run RVIZ. In another terminal, run:
-```
-	cd /path/to/project/rviz
-	source devel/setup.zsh
-	rosrun rviz rviz -d dummy_sim.rviz
-```
 
 Rviz should look like this:
 <p align="center">
-   <img src="./readme/rviz.png" width="600" />
+   <img src="./readme/rviz.png" width="800" />
 </p>
 
 ## Launch Ball Chaser

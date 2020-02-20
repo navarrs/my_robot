@@ -33,11 +33,11 @@
         output ="screen" 
         args = "-urdf -param robot_description -model my_robot -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
 
-  <!-- Launch rviz-->
+  <!-- Launch rviz -->
   <node name="rviz" 
         pkg="rviz" 
         type="rviz" 
-        args="-d "
-        args="-d $(find my_robot)/rviz/my_robot.rviz"
+        args = "-d $(find my_robot)/rviz/my_robot.rviz"
         respawn="false"/>
+
 </launch>

@@ -43,7 +43,9 @@ void ProcessImage::ProcessImageCallback(const sensor_msgs::Image img) {
 	const int max_forward = 2 * img.width / 3;
 
 	for(int i = 0; i < img.height * img.step; ++i) {
-		if(white_pixel == img.data[i]) {
+		if(white_pixel == img.data[i]   &&  // Check if pixel is (255, 255, 255)
+			 white_pixel == img.data[++i] &&
+			 white_pixel == img.data[++i] ) {
 			int col = (i % img.step) / 3;
 			if(col >= 0 && col <= max_left) {
 				// Move to the left

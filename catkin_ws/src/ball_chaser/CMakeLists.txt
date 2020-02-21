@@ -120,13 +120,13 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(drive_bot_lib
-#    include/drive_bot/drive_bot.cpp include/drive_bot/drive_bot.h
-# )
+add_library(drive_bot_lib
+  include/drive_bot/drive_bot.cpp include/drive_bot/drive_bot.h
+)
 
-# add_library(process_image_lib
-#   include/process_image/process_image.cpp include/process_image/process_image.h
-# )
+add_library(process_image_lib
+  include/process_image/process_image.cpp include/process_image/process_image.h
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -209,9 +209,9 @@ include_directories(
 # catkin_add_nosetests(test)
 
 add_executable(process_image src/process_image.cpp)
-target_link_libraries(process_image ${catkin_LIBRARIES})# process_image_lib)
+target_link_libraries(process_image ${catkin_LIBRARIES} process_image_lib)
 add_dependencies(process_image process_image_generate_messages_cpp)
 
 add_executable(drive_bot src/drive_bot.cpp)
-target_link_libraries(drive_bot ${catkin_LIBRARIES})# drive_bot_lib)
+target_link_libraries(drive_bot ${catkin_LIBRARIES} drive_bot_lib)
 add_dependencies(drive_bot drive_bot_generate_messages_cpp)

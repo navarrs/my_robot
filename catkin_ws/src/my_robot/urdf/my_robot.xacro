@@ -38,6 +38,12 @@
     <limit effort="10000" velocity="1000"/>
     <dynamics damping="1.0" friction="1.0"/>
   </joint>
+  <!-- Optical camera joint -->
+  <joint name="camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707"/>
+    <child link="camera_optical"/>
+    <parent link="camera"/>
+  </joint>
   <!-- LiDAR joint -->
   <joint type="fixed" name="hokuyo_joint">
     <origin xyz="0.15 0 0.1" rpy="0 0 0"/>
@@ -170,6 +176,8 @@
       </geometry>
     </visual>
   </link>
+  <!-- Optical Camera -->
+  <link name="camera_optical"></link>
   <!-- LiDAR -->
   <link name = "hokuyo">
     <inertial>

@@ -3,7 +3,8 @@
 This is my Udacity's Robotics Nanodegree Project.
 - Part 1 - ```Build my World```: Designed a Gazebo simulation containing my robot's world. 
 - Part 2 - ```Go Chase It```: Designed my robot and used ROS to create a package to move a robot when it sees a white ball. 
-- Part 3 - ```Where Am I?```: Used pgm package to create a map of my world and used the ACML package to localize a robot on the map as it moves around the environment. 
+- Part 3 - ```Where Am I?```: Used pgm package to create a map of my world and used the ACML package to localize a robot on the map as it moves around the environment.
+- Part 4 - ```Map My World```: Used rtabmap package to perform Real-Time SLAM. 
 
 Initialize workspace:
 ```
@@ -85,7 +86,7 @@ And include the generated map in ```my_robot/maps```. The map should look like t
    <img src="./readme/pgmmap.png" width="600" />
 </p>
 
-To test the AMCL package. Launch the world as in ```part 1 and 2```. After launching the world, open another terminal and run:
+To test the ```amcl``` package. Launch the world as in ```part 1 and 2```. After launching the world, open another terminal and run:
 ```
 	cd /path/to/catkin_ws/
 	source devel/setup.zsh
@@ -110,3 +111,38 @@ On the RVIZ simulation:
 	rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 Now the robot's movement is controlled using the keyboard. 
+
+## Part 4
+
+To test the ```rtabmap_ros``` package. Launch the world as shown in ```part 1 and 2```. Then, open a new terminal, and run:
+```
+	cd /path/to/catkin_ws/
+	source devel/setup.zsh
+	roslaunch my_robot mapping.launch
+```
+
+To start creating the map, run the ```teleop_key``` package, in a new terminal:
+```
+	cd /path/to/catkin_ws/
+	source devel/setup.zsh
+	rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+You should see the RTABMAP visualization:
+<p align="center">
+    <img src="./readme/rtabmaoviz.png" width="800" />
+</p>
+
+The resulting map, after exploring the world should look something like this:
+<p align="center">
+    <img src="./readme/mapping.png" width="800" />
+</p>
+
+To analyze the database, run:
+```
+	cd /path/to/catkin_ws/
+	rtabmap-databaseViewer src/my_robot/db/rtabmap.db
+```
+<p align="center">
+    <img src="./readme/db.png" width="800" />
+</p>

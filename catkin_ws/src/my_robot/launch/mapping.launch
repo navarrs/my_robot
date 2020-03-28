@@ -43,7 +43,7 @@
         Rate (Hz) at which new nodes are added to map 
       -->
       <param name="Rtabmap/DetectionRate" type="string" value="1"/>
-
+      <param name="Grid/RangeMax" type="string" value="10"/>
       <!-- 
         2D SLAM 
       -->

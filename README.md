@@ -130,7 +130,7 @@ To start creating the map, run the ```teleop_key``` package, in a new terminal:
 
 You should see the RTABMAP visualization:
 <p align="center">
-    <img src="./readme/rtabmaoviz.png" width="800" />
+    <img src="./readme/rtabmapviz.png" width="800" />
 </p>
 
 The resulting map, after exploring the world should look something like this:
@@ -141,6 +141,7 @@ The resulting map, after exploring the world should look something like this:
 To analyze the database, run:
 ```
 	cd /path/to/catkin_ws/
+	mkdir -p src/my_robot/db
 	rtabmap-databaseViewer src/my_robot/db/rtabmap.db
 ```
 <p align="center">

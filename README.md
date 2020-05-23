@@ -1,4 +1,4 @@
-# Hugo in ROS 
+# My Robot 
 
 ## Requirements
 This code is tested in ROS Melodic with Ubuntu 18.04.

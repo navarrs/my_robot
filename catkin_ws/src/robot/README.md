@@ -8,7 +8,7 @@ To spawn a robot in ```gazebo```, run:
   ./scripts/robot_spawn.zsh -r dummy
 ``` 
 
-You should the following robot:
+You should see the following robot:
 <div align="center">
   <img src="../../../readme/robot_dummy.gif" width="600">
 </div>

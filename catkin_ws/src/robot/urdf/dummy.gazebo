@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot>
-
   <gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <plugin name="differential_drive_controller" 
+            filename="libgazebo_ros_diff_drive.so">
       <legacyMode>false</legacyMode>
       <alwaysOn>true</alwaysOn>
       <updateRate>10</updateRate>
@@ -40,23 +40,24 @@
           <format>R8G8B8</format>
         </image>
         <depth_camera>
-
         </depth_camera>
         <clip>
           <near>0.1</near>
           <far>20</far>
         </clip>
       </camera>
-      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+      <plugin name="camera_controller" 
+              filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
         <alwaysOn>true</alwaysOn>
         <updateRate>10.0</updateRate>
         <cameraName>camera</cameraName>
         <frameName>camera_optical</frameName>                   
-        <imageTopicName>rgb/image_raw</imageTopicName>
-        <depthImageTopicName>depth/image_raw</depthImageTopicName>
-        <pointCloudTopicName>depth/points</pointCloudTopicName>
-        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>              
-        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>            
+        <imageTopicName>/camera/rgb/image_raw</imageTopicName>
+        <cameraInfoTopicName>/camera/rgb/camera_info</cameraInfoTopicName>            
+        <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+        <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName> 
+        <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
         <pointCloudCutoff>0.4</pointCloudCutoff>                
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
@@ -102,12 +103,22 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+      <plugin name="gazebo_ros_head_hokuyo_controller" 
+              filename="libgazebo_ros_laser.so">
         <topicName>/scan</topicName>
         <frameName>hokuyo</frameName>
       </plugin>
     </sensor>
   </gazebo>
 
-
+  <!-- Color visualization -->
+  <gazebo reference="left_wheel">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="right_wheel">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="chassis">
+    <material>Gazebo/Orange</material>
+  </gazebo>
 </robot>

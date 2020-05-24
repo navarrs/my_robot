@@ -1,10 +1,18 @@
 <launch>
-	<!-- 
-		Map server: Provides data as a service to the amcl node. 
-	-->
-	<arg name="map_file" default="$(find database)/maps/map.yaml"/>
-	<node name="map_server" pkg="map_server" type="map_server"
-	      args="$(arg map_file)" />
+<!-- 
+	arguments
+-->
+<arg name="scan_topic" default="/scan"/>
+<arg name="odom_topic" default="/odom"/>
+<arg name="map_topic" default="map"/>
+<arg name="map_file"  default="pgm_map" />
+<arg name="map_a"    default="0" />
+
+<!-- 
+	map_server node: provides map data as a ROS service given an input map.
+-->
+<node name="map_server" pkg="map_server" type="map_server" 
+	    args="$(find database)/maps/$(arg map_file).yaml" />
 
 	<!-- 
 		AMCL node: Adaptive Monte Carlo Localization.

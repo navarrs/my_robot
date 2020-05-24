@@ -46,4 +46,4 @@ Rviz should look like this:
 
 ## Troubleshooting
 
-If you can't see the models correcly you might need to download them from [here](http://data.nvision2.eecs.yorku.ca/3DGEMS/) or adjust the paths in the ```.world``` or ```.urdf``` files in the [database package](https://github.com/XLabRD/XLB-hugo-sanchez/tree/REFACTOR_readme-cleanup/catkin_ws/src/database).
+If you can't see the models correcly you might need to download them from [here](http://data.nvision2.eecs.yorku.ca/3DGEMS/) or adjust the paths in the ```.world``` or ```.urdf``` files in the [database package](https://github.com/XLabRD/XLB--sanchez/tree/REFACTOR_readme-cleanup/catkin_ws/src/database).

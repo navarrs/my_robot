@@ -28,7 +28,7 @@ case "${option}" in
 	r) 
 		ROBOT="$(echo ${OPTARG} | tr '[:upper:]' '[:lower:]')"
 		if ! `contains "$ROBOT_LIST" "$ROBOT"` ; then 
-			echo "Error: unknown robot. Available robots are: [dummy | hugo]"
+			echo "Error: unknown robot. Available robots are: [dummy | ]"
 			exit 1
 	  fi
 	  ;;

@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-ROBOT_LIST="none dummy hugo"
+ROBOT_LIST="none dummy"
 ROBOT=""
 
 # Checks if a list contains a word
@@ -17,7 +17,7 @@ function contains {
 # Prints script usage
 function usage {
 	echo "Usage: ./scripts/robot_spawn.zsh -r robot_name"
-	echo "-r: Robot to spawn [dummy | hugo]"
+	echo "-r: Robot to spawn [dummy | ]"
 }
 # If no arguments where provided, print usage and exit
 if [ $# -eq 0 ] ; then
@@ -34,7 +34,7 @@ case "${option}" in
 	r) 
 		ROBOT="$(echo ${OPTARG} | tr '[:upper:]' '[:lower:]')"
 		if ! `contains "$ROBOT_LIST" "$ROBOT"` ; then 
-			echo "Error: unknown robot. Available robots are: [none | dummy | hugo]"
+			echo "Error: unknown robot. Available robots are: [none | dummy | ]"
 			exit 1
 	  fi
 	  ;;

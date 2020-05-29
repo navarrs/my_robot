@@ -1,4 +1,4 @@
 *build
 *devel
 *.catkin*
-*catkin_ws/src/my_robot/db/*.db
+*catkin_ws/src/database/slam/*.db

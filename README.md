@@ -25,9 +25,9 @@ To compile:
 
 Our current packages are below. Follow the links for more information on how to use them.
 * [Database](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/database): stores all the assets
-* [Localization](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/localization): used to perform robot self-localization. Currently supported by [RTAB-Map](http://wiki.ros.org/rtabmap_ros) and [AMCL](http://wiki.ros.org/amcl). 
+* [Detector](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/detector): Performs object detection. IN PROGRESS.
+* [Localization](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/localization): used to perform robot self-localization. Currently supported by * [RTAB-Map](http://wiki.ros.org/rtabmap_ros) and [AMCL](http://wiki.ros.org/amcl). 
 * [Mapping](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/mapping): Perform environment mapping. Currently supported by RTAB-Map.
-* [Object Detector](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/object_detector): Performs object detection. IN PROGRESS.
 * [Robot](https://github.com/navarrs/my_robot/tree/master/catkin_ws/src/robot): Contains the urdf files of all supported robots, as well as their kinematic models. Currently supports two robots, namely: hugo and dummy. 
 * [Teleop Key](http://wiki.ros.org/teleop_twist_keyboard): External package to operate the keyboard for robot twists. 
 

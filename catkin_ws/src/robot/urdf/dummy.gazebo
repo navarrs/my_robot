@@ -118,7 +118,4 @@
   <gazebo reference="right_wheel">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
-  <gazebo reference="chassis">
-    <material>Gazebo/Orange</material>
-  </gazebo>
 </robot>

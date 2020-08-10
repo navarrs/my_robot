@@ -16,7 +16,7 @@
 
   <!-- Link 1: Robot chassis -->
   <link name='chassis'>
-    <pose>0 0 0.1 0 0 0</pose>
+    <pose>0 0 0.5 0 0 0</pose>
     <inertial>
       <mass value="15.0"/>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
@@ -30,7 +30,10 @@
     <visual name='chassis_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
-        <box size=".4 .2 .1"/>
+        <mesh 
+          scale="0.9 0.6 0.6"
+          filename="package://database/objects/models/robot/chassis.dae"
+        />
       </geometry>
     </visual>
     <collision name='chassis_collision'>
@@ -79,9 +82,12 @@
       />
     </inertial>
     <visual name='left_wheel_visual'>
-      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <mesh 
+          scale="0.9 0.9 0.9"
+          filename="package://database/objects/models/robot/wheel.dae"
+        />
       </geometry>
     </visual>
     <collision name='left_wheel_collision'>
@@ -104,9 +110,12 @@
       />
     </inertial>
     <visual name='right_wheel_visual'>
-      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <mesh 
+          scale="0.9 0.9 0.9"
+          filename="package://database/objects/models/robot/wheel.dae"
+        />
       </geometry>
     </visual>
     <collision name='right_wheel_collision'>
@@ -150,6 +159,7 @@
 
   <!-- Link 5: Laser scanner -->
   <link name = "hokuyo">
+    <origin xyz="0 0 10" rpy="0 0 0"/>
     <inertial>
       <mass value = "1e-5"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>

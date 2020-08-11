@@ -111,14 +111,9 @@
     </sensor>
   </gazebo>
 
-  <!-- Color visualization -->
-  <gazebo reference="left_wheel">
+  <!-- Color visualization 
+  <gazebo reference="front_caster_visual">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
-  <gazebo reference="right_wheel">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-  <gazebo reference="chassis">
-    <material>Gazebo/Orange</material>
-  </gazebo>
+  -->
 </robot>

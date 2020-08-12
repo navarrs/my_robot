@@ -3,7 +3,7 @@
 	<!-- 
     SLAM required arguments 
   -->
-  <arg name="database_path" default="$(find database)/slam/rtabmap.db"/>
+  <arg name="db_name" default="rtabmap.db"/>
   <arg name="rgb_topic" default="/camera/rgb/image_raw"/>
   <arg name="depth_topic" default="/camera/depth/image_raw"/>
   <arg name="odom_topic" default="/odom"/>
@@ -20,7 +20,8 @@
       <!-- 
         Basic RTAB-Map Parameters 
       -->
-      <param name="database_path" type="string" value="$(arg database_path)"/>
+      <param name="database_path" type="string" 
+             value="$(find database)/slam/$(arg db_name)"/>
       <param name="frame_id" type="string" value="robot_footprint"/>
       <param name="odom_frame_id" type="string" value="odom"/>
       <param name="subscribe_depth" type="bool" value="true"/>

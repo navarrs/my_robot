@@ -3,6 +3,7 @@ ROBOT_LIST="dummy"
 ROBOT=""
 WORLD_LIST="house walls empty"
 WORLD=""
+RVIZ_CFG="simple.rviz"
 # Checks if a list contains a word
 function contains {
   local list="$1"
@@ -16,9 +17,10 @@ function contains {
 }
 # Prints script usage
 function usage {
-	echo "Usage: ./scripts/spawn.zsh -r robot_name -w world_name"
+	echo "Usage: ./scripts/spawn.zsh -r robot_name -w world_name -v rviz_cfg"
 	echo "-r: dummy"
 	echo "-w: house | wall | empty"
+	echo "-v RVIZ configuration"
 }
 # If no arguments where provided, print usage and exit
 if [ $# -eq 0 ] ; then
@@ -26,7 +28,7 @@ if [ $# -eq 0 ] ; then
 		exit 1
 fi
 # Capture options
-while getopts h:r:w: option ; do
+while getopts h:r:w:v: option ; do
 case "${option}" in
 	h)
 		usage
@@ -55,9 +57,15 @@ case "${option}" in
 			exit 1
 	  	fi
 	  	;;
+	v)
+		RVIZ_CFG="$(echo ${OPTARG} | tr '[:upper:]' '[:lower:]')"
+		if [ "$RVIZ_CFG" = "" ] ; then
+			echo "RVIZ Configuration file is unspecified. Setting default."
+			RVIZ_CFG="simple.rviz"
+		fi
 esac
 done
 
 # Launch the world without a robot
 xterm -e "source catkin_ws/devel/setup.zsh;
-		  roslaunch robot spawn.launch robot_name:=$ROBOT world_name:=$WORLD" &
+		  roslaunch robot spawn.launch robot_name:=$ROBOT world_name:=$WORLD rviz_file:=$RVIZ_CFG" &

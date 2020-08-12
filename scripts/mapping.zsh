@@ -1,8 +1,8 @@
 #!/bin/zsh
-
 ROBOT_LIST="dummy"
 ROBOT=""
-
+WORLD_LIST="house walls"
+WORLD=""
 # Create db directory 
 DB_PATH="./catkin_ws/src/database/slam/"
 if [ ! -d $DB_PATH ]; then
@@ -24,8 +24,9 @@ function contains {
 }
 # Prints script usage
 function usage {
-	echo "Usage: ./scripts/rtab_mapping.zsh -r robot_name"
-	echo "-r: Robot to spawn [dummy]"
+	echo "Usage: ./scripts/mapping.zsh -r robot_name -w world_name"
+	echo "-r: dummy"
+	echo "-w: house | wall"
 }
 # If no arguments where provided, print usage and exit
 if [ $# -eq 0 ] ; then
@@ -33,7 +34,7 @@ if [ $# -eq 0 ] ; then
 		exit 1
 fi
 # Capture options
-while getopts h:r: option ; do
+while getopts h:r:w: option ; do
 case "${option}" in
 	h)
 		usage
@@ -41,24 +42,40 @@ case "${option}" in
 		;;
 	r) 
 		ROBOT="$(echo ${OPTARG} | tr '[:upper:]' '[:lower:]')"
-		if ! `contains "$ROBOT_LIST" "$ROBOT"` ; then 
-			echo "Error: unknown robot. Available robots are: [none | dummy]"
+		if [ "$ROBOT" = "" ] ; then
+			echo "Error: specified no robot. Options are: [dummy]"
 			exit 1
-	  fi
+		fi
+
+		if ! `contains "$ROBOT_LIST" "$ROBOT"` ; then 
+			echo "Error: unknown robot. Available robots are: [dummy]"
+			exit 1
+	  	fi
 	  ;;
+	w) 
+		WORLD="$(echo ${OPTARG} | tr '[:upper:]' '[:lower:]')"
+		if [ "$WORLD" = "" ] ; then
+			echo "Error: specified no world. Options are: [house|walls]"
+			exit 1
+		fi
+		if ! `contains "$WORLD_LIST" "$WORLD"` ; then 
+			echo "Error: unknown world. Available worlds are: [house|walls]"
+			exit 1
+	  	fi
+	  	;;
 esac
 done
 
-# Launch mapping 
-if ! [ "$ROBOT" = "" ] ; then
-	# Launch the world with a specified robot
-	xterm -e "source catkin_ws/devel/setup.zsh;
-		  	    roslaunch robot world_robot.launch my_robot:=$ROBOT" &
-	sleep 10
-	# Launch RTAB-Map
-	xterm -e "source catkin_ws/devel/setup.zsh;
-	         roslaunch mapping mapping.launch" &
-	# Launch Teleop
-	xterm -e "source catkin_ws/devel/setup.zsh;
-						rosrun teleop_twist_keyboard teleop_twist_keyboard.py" &
-fi
+# Spawn world and robot
+xterm -e "source catkin_ws/devel/setup.zsh;
+		  roslaunch robot spawn.launch robot_name:=$ROBOT world_name:=$WORLD rviz_file:=mapping.rviz" &
+sleep 10
+
+# Launch mapping	
+xterm -e "source catkin_ws/devel/setup.zsh;
+	      roslaunch mapping mapping.launch db_name:=$WORLD.db" &
+sleep 10
+
+# Launch keyboard teleoperation
+xterm -e "source catkin_ws/devel/setup.zsh;
+		  rosrun teleop_twist_keyboard teleop_twist_keyboard.py" &

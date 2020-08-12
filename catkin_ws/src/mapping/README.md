@@ -7,10 +7,11 @@ This package is used to map the environment.
 
 To launch the mapping module, run:
 ```
-  ./scripts/rtab_mapping.zsh  -r robot_name
+  ./scripts/mapping.zsh  -r robot_name -w world_name
 ```
 Where:
 * ```robot_name``` is ```dummy```.
+* ```world_name``` is ```house``` or ```walls```.
 
 You should see the RTABMAP visualization:
 <p align="center">
@@ -26,7 +27,7 @@ Now you can explore the world using the teleop package. And the map will be gene
 ```
   cd /path/to/catkin_ws/
   source devel/setup.zsh
-  rosrun map_server map_saver -f src/database/maps/rtab_map
+  rosrun map_server map_saver -f src/database/maps/world_dir/world_name
 ```
 
 To analyze the database, run:

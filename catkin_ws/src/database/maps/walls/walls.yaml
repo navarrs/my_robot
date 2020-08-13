@@ -1,4 +1,4 @@
-image: catkin_ws/src/database/maps/walls.pgm
+image: walls.pgm
 resolution: 0.050000
 origin: [-12.551937, -12.092162, 0.000000]
 negate: 0

@@ -80,7 +80,6 @@ xterm -e "source catkin_ws/devel/setup.zsh;
 		  roslaunch robot spawn.launch robot_name:=$ROBOT world_name:=$WORLD rviz_file:=localization.rviz" &
 sleep 10
 
-
 # Launch the localization module in another terminal 
 xterm -e "source catkin_ws/devel/setup.zsh;
 		  roslaunch localization amcl.launch map_name:=$WORLD initial_pose_a:=$POSE" &

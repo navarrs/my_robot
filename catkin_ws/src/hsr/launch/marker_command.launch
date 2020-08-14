@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Params -->
+  <arg name="num_tries" default="10"/>
+
+  <arg name="x" default="6.60"/>
+  <arg name="y" default="-4.20"/>
+  <arg name="z" default="0.0"/>
+
+  <arg name="roll" default="0.0" />
+  <arg name="pitch" default="0.0" />
+  <arg name="yaw" default="0.0" />
+
+  <arg name="marker_action" default="NONE"/>
+  <arg name="marker_csrv" default="/marker_req"/>
+  
+  <!-- Node -->
+  <node name="marker_command" type="marker_command" pkg="hsr" output="screen">
+    <param name="num_tries" type="int" value="$(arg num_tries)" />
+
+    <param name="x" type="double" value="$(arg x)"/>
+    <param name="y" type="double" value="$(arg y)"/>
+    <param name="z" type="double" value="$(arg z)"/>
+
+    <param name="roll" type="double" value="$(arg roll)"/>
+    <param name="pitch" type="double" value="$(arg pitch)"/>
+    <param name="yaw" type="double" value="$(arg yaw)"/>
+
+    <param name="marker_action" type="str" value="$(arg marker_action)"/>
+    <param name="marker_csrv" type="str" value="$(arg marker_csrv)" />
+  </node>
+</launch>

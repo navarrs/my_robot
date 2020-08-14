@@ -1,0 +1,7 @@
+marker:
+  namespace: "marker_publisher"
+  frame_id: map
+  type: 1 #CUBE
+  scale: [0.2,0.2,0.2]
+  color: [1.0,0.2,1.0,1.0]
+  id: 0

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Params -->
+  <arg name="queue_size" default="10"/>
+  <arg name="marker_cfg" default="marker.yaml"/>
+  <arg name="marker_pub" default="/marker_vis"/>
+  <arg name="marker_ssrv" default="/marker_req"/>
+  
+  <rosparam command="load" file="$(find database)/hsr/$(arg marker_cfg)"/>
+  
+  <!-- Node -->
+  <node name="marker_publisher" type="marker_publisher" pkg="hsr" output="screen">
+    <param name="queue_size" type="int" value="$(arg queue_size)"/>
+    <param name="marker_pub" type="str" value="$(arg marker_pub)"/>
+    <param name="marker_ssrv" type="str" value="$(arg marker_ssrv)"/>
+  </node>
+</launch>

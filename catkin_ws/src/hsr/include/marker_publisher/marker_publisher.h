@@ -15,6 +15,7 @@
 #include <visualization_msgs/Marker.h>
 
 #include "hsr/hsr.h"
+#include "hsr/MarkerCommand.h"
 
 // DEFINES ---------------------------------------------------------------------
 
@@ -25,7 +26,16 @@ namespace hsr { namespace service_robot {
 // FOWARD DECLARATIONS ---------------------------------------------------------
 
 // ENUMS -----------------------------------------------------------------------
-
+namespace MarkerAction {
+  enum class Id {
+    NONE = 0, ADD, DELETE
+  };
+  std::map<std::string, Id> Name2Id = {
+    {"NONE", Id::NONE},
+    {"ADD", Id::ADD},
+    {"DELETE", Id::DELETE},
+  }; 
+} // End of namespace MarkerAction 
 // STRUCTS ---------------------------------------------------------------------
 
 // TYPEDEFS --------------------------------------------------------------------
@@ -56,7 +66,15 @@ public:
   // MEMBER GETTERS ------------------------------------------------------------
 private:
   // FUNCTIONS -----------------------------------------------------------------
-  
+  /**
+   * Handles marker command requests. 
+   * @param req message request.
+   * @param res message response.
+   * @return true if successful, false otherwise
+   * */
+  bool OnMarkerCommandRequest(
+    hsr::MarkerCommand::Request &req, hsr::MarkerCommand::Response &res);
+
   // PRIVATE MEMBERS -----------------------------------------------------------
   /**
    * Node handle for the marker publisher.
@@ -67,6 +85,10 @@ private:
    * */
   ros::Publisher marker_pub_;
   /**
+   * Marker request service server.
+   * */
+  ros::ServiceServer marker_ssrv_;
+  /**
    * Current marker to publish.
    * */
   visualization_msgs::Marker marker_;
@@ -74,6 +96,10 @@ private:
    * Pose where to publish a the marker.
    * */
   geometry_msgs::Pose marker_pose_;
+  /**
+   * Current marker action 
+   * */
+  MarkerAction::Id marker_action_ = MarkerAction::Id::NONE;
   /**
    * Topic to publish markers.
    * */
@@ -90,6 +116,7 @@ private:
   // LAUNCH PARAMETERS AND TOPICS ----------------------------------------------
   const std::string param_queue_size_ = "queue_size";
   const std::string topic_marker_pub_ = "marker_pub";
+  const std::string topic_marker_ssrv_ = "marker_ssrv";
 };
 } // End of namespace service_robot. 
 } // End of namespace hsr.

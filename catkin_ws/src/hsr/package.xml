@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>service_robot</name>
+  <name>hsr</name>
   <version>0.0.0</version>
-  <description>The service_robot package</description>
+  <description>The home service robot package</description>
   <maintainer email="navars.in@gmail.com">navarrs</maintainer>
 
   <license>TODO</license>

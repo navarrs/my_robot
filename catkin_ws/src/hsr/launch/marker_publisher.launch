@@ -2,15 +2,13 @@
 <launch>
   <!-- Params -->
   <arg name="queue_size" default="10"/>
-
-  <!-- Marker Parameters -->
-
-  <!-- Topics -->
+  <arg name="marker_cfg" default="marker.yaml"/>
   <arg name="marker_pub" default="/visualization_marker"/>
   
+  <rosparam command="load" file="$(find database)/hsr/$(arg marker_cfg)"/>
+  
   <!-- Node -->
-  <node name="marker_publisher" type="marker_publisher" pkg="marker_publisher" 
-        output="screen">
+  <node name="marker_publisher" type="hsr" pkg="hsr" output="screen">
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
     <param name="marker_pub" type="str" value="$(arg marker_pub)"/>
   </node>

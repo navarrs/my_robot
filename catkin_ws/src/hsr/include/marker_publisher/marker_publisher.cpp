@@ -36,18 +36,15 @@ Exit MarkerPublisher::Initialize() {
     param_value, &MarkerPublisher::OnMarkerCommandRequest, this);
   
   // Wait to get a subscriber to the markers
-  // while(marker_pub_.getNumSubscribers() < 1) {
-  //   if(!ros::ok()) {
-  //     return FAIL;
-  //   }
-  //   ROS_WARN_ONCE("Please create a subscriber to the marker");
-  //   sleep(1);
-  // }
+  while(marker_pub_.getNumSubscribers() < 1) {
+    if(!ros::ok()) {
+      return FAIL;
+    }
+    ROS_WARN_ONCE("Please create a subscriber to the marker");
+    sleep(1);
+  }
 
   // Set marker
-  /**
-   * @todo: find better way to get this data
-   * */
   if(!marker_node_.getParam("/marker/namespace", marker_.ns)) {
     ROS_ERROR("Could not get marker/namespace");
     return FAIL;
@@ -106,16 +103,29 @@ bool MarkerPublisher::OnMarkerCommandRequest(
     return false;
   }
   marker_action_ = MarkerAction::Name2Id.find(req.marker_action)->second;
-  marker_pose_.position.x = req.pos_x;
-  marker_pose_.position.y = req.pos_y;
-  marker_pose_.position.z = req.pos_z; 
-  marker_pose_.orientation.x = marker_pose_.orientation.x;
-  marker_pose_.orientation.y = marker_pose_.orientation.y;
-  marker_pose_.orientation.z = marker_pose_.orientation.z;
-  marker_pose_.orientation.w = marker_pose_.orientation.w;
+  marker_.pose = req.pose;
+  
+  switch(marker_action_) {
+    case MarkerAction::Id::ADD:
+      marker_.action = visualization_msgs::Marker::ADD;
+      break;
+    case MarkerAction::Id::DELETE:
+      marker_.action = visualization_msgs::Marker::DELETE;
+      break;
+    case MarkerAction::Id::NONE:
+    default:
+      ROS_WARN("Unsuported marker action %s", req.marker_action.c_str());
+      break;
+  }
 
-  ROS_INFO("Received MarkerCommandRequest with action %s", 
-    req.marker_action.c_str());
+  // Publish the marker
+  if(MarkerAction::Id::NONE != marker_action_) {
+    marker_pub_.publish(marker_);
+    ROS_INFO("Published marker!");
+  }
+
+  res.feedback_msg = "MarkerCommandRequest with action " + req.marker_action;
+  ROS_INFO("%s", res.feedback_msg.c_str());
   return true;  
 }
 

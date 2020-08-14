@@ -11,10 +11,10 @@
 
   <depend>roscpp</depend>
   <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
 
   <build_depend>common</build_depend>
   <build_depend>visualization_msgs</build_depend>
-  <build_depend>geometry_msgs</build_depend>
   <build_depend>message_generation</build_depend>
 
   <exec_depend>message_runtime</exec_depend>

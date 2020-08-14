@@ -31,9 +31,9 @@ namespace MarkerAction {
     NONE = 0, ADD, DELETE
   };
   std::map<std::string, Id> Name2Id = {
-    {"NONE", Id::NONE},
-    {"ADD", Id::ADD},
-    {"DELETE", Id::DELETE},
+    {"NONE", Id::NONE}, {"none", Id::NONE},
+    {"ADD", Id::ADD}, {"add", Id::ADD},
+    {"DELETE", Id::DELETE}, {"delete", Id::DELETE},
   }; 
 } // End of namespace MarkerAction 
 // STRUCTS ---------------------------------------------------------------------
@@ -103,7 +103,7 @@ private:
   /**
    * Topic to publish markers.
    * */
-  std::string marker_pub_topic_ = "visualization_marker";
+  std::string marker_pub_topic_ = "marker_visualization";
   /**
    * Namespace of marker.
    * */
